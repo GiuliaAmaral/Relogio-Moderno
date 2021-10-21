@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="clock">
+        <h2>Que horas são?</h2>
+        <div class="time" id="time">
+            <div><span id="hour"></span><span>Horas</span></div>
+            <div><span id="minute"></span><span>Minutos</span></div>
+            <div><span id="second"></span><span>Segundos</span></div>
+        </div>
+    </div>
+
+</body>
+<script>
+
+    function showTime() {
+        let horaAntiga = document.getElementById("hour").innerHTML;
+        let minAntiga = document.getElementById("minute").innerHTML;
+        let secAntiga = document.getElementById("second").innerHTML;
+
+        let data = new Date();
+        let hora = data.getHours();
+        let min = data.getMinutes();
+        let sec = data.getSeconds();
+
+        if (hora < 10) hora = "0" + hora;
+        if (min < 10) min = "0" + min;
+        if (sec < 10) sec = "0" + sec;
+
+        document.getElementById("time").innerHTML = `
+        <div><span class="animate__animated" id="hour">${hora}</span><span>Horas</span></div>
+        <div><span class="animate__animated" id="minute">${min}</span><span>Minutos</span></div>
+        <div><span class="animate__animated" id="second">${sec}</span><span>Segundos</span></div>
+        `;
+
+        if (String(horaAntiga) !== String(hora)) {
+            document.getElementById("hour").classList.add("animate__flipInX");
+        }
+        if (String(minAntiga) !== String(min)) {
+            document.getElementById("minute").classList.add("animate__flipInX");
+        }
+        if (String(secAntiga) !== String(sec)) {
+            document.getElementById("second").classList.add("animate__flipInX");
+        }
+
+    }
+
+
+    setInterval(showTime, 1000);
+
+
+
+
+</script>
+
+</html>
